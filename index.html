@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>CSV to ICS Shiftmaker: Convert CSV or Excel rosters and schedules to a clean ICS calendar file with timezones, recurrence rules and reminders</title>
+<meta name="description" content="Convert CSV or Excel rosters and schedules to a clean ICS calendar file with timezones, recurrence rules and reminders. Bulk add events to Google Calendar, free and local.">
+<meta name="keywords" content="CSV to ICS converter, Excel to calendar converter, create ICS file from spreadsheet, bulk add events to Google Calendar">
+<meta name="author" content="Amir Hussain"><meta name="robots" content="index, follow">
+<link rel="canonical" href="https://aamirtechs.github.io/csv-to-ics-shiftmaker/"><link rel="icon" href="favicon.svg"><meta name="theme-color" content="#0b1f3a">
+<meta property="og:type" content="website"><meta property="og:title" content="CSV to ICS Shiftmaker"><meta property="og:description" content="Convert CSV or Excel rosters and schedules to a clean ICS calendar file with timezones, recurrence rules and reminders. Bulk add events to Google Calendar, free and local."><meta property="og:url" content="https://aamirtechs.github.io/csv-to-ics-shiftmaker/">
+<meta name="twitter:card" content="summary"><meta name="twitter:title" content="CSV to ICS Shiftmaker"><meta name="twitter:description" content="Convert CSV or Excel rosters and schedules to a clean ICS calendar file with timezones, recurrence rules and reminders. Bulk add events to Google Calendar, free and local.">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Plus+Jakarta+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0b1f3a;--navy2:#122c50;--gold:#d4a72c;--ink:#16233a;--muted:#5a6a84;--line:#e3e9f2;--bg:#f6f8fb;--card:#ffffff}
+*{box-sizing:border-box} body{margin:0;font-family:'Plus Jakarta Sans',system-ui,sans-serif;color:var(--ink);background:var(--bg)}
+header{background:linear-gradient(135deg,var(--navy),var(--navy2));color:#fff;padding:40px 20px 30px;text-align:center}
+header h1{font-family:Sora,sans-serif;font-size:2.1rem;margin:0 0 10px} header h1 span{color:var(--gold)}
+header p{max-width:720px;margin:0 auto 14px;opacity:.92;line-height:1.55}
+.stats{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}.stats span{background:rgba(255,255,255,.12);padding:6px 12px;border-radius:999px;font-size:.85rem}
+main{max-width:960px;margin:0 auto;padding:24px 16px 40px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px;box-shadow:0 4px 18px rgba(11,31,58,.06)}
+label{font-weight:700;font-size:.9rem;display:block;margin:12px 0 5px}
+input,select,textarea{width:100%;padding:10px;border:1px solid var(--line);border-radius:8px;font:inherit}
+textarea{min-height:110px} .row{display:grid;grid-template-columns:1fr 1fr;gap:14px}@media(max-width:700px){.row{grid-template-columns:1fr}}
+.btn-run{background:var(--gold);color:#16233a;border:0;padding:12px 22px;border-radius:9px;font-weight:800;cursor:pointer;margin-top:16px}
+.btn-ghost{background:#fff;border:1px solid var(--line);padding:10px 16px;border-radius:9px;cursor:pointer;font-weight:700}
+pre{background:#0b1f3a;color:#eaf0fa;padding:14px;border-radius:10px;overflow:auto;white-space:pre-wrap;word-break:break-word;font-size:.85rem}
+.privacy{color:var(--muted);font-size:.9rem;margin-top:12px}
+section.features{background:#fff;border:1px solid var(--line);border-radius:14px;padding:20px 22px;margin-top:18px}
+footer{background:var(--navy);color:#dbe6f5;text-align:center;padding:26px 16px;line-height:1.6} footer a{color:var(--gold)}
+table{width:100%;border-collapse:collapse;font-size:.9rem} th,td{border-bottom:1px solid var(--line);padding:7px;text-align:left}
+</style>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"CSV to ICS Shiftmaker","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"author":{"@type":"Person","name":"Amir Hussain","url":"https://aamirtechs.com"},"url":"https://aamirtechs.github.io/csv-to-ics-shiftmaker/"}</script>
+</head><body><header><h1>CSV to <span>ICS</span> Shiftmaker</h1><p>Turn a roster, class schedule or event spreadsheet into a calendar file with timezones, recurrence and reminders that actually imports cleanly.</p><div class="stats"><span>Free</span><span>100% in your browser</span><span>No sign-up</span></div></header><main><div class="card">
+<label>Upload CSV or XLSX</label><input type="file" id="file" accept=".csv,.xlsx,.xls">
+<label>Or paste CSV (header row: title,start,end,location,notes)</label><textarea id="csv">title,start,end,location,notes
+Night shift,2026-11-02 18:00,2026-11-02 23:00,Depot,Bring keys
+Training,2026-11-03 09:00,2026-11-03 11:00,Room 2,</textarea>
+<div class="row"><div><label>Timezone</label><select id="tz"><option>UTC</option><option>Asia/Karachi</option><option>America/New_York</option><option>Europe/London</option><option>Asia/Dubai</option></select></div><div><label>Reminder</label><select id="rem"><option value="">None</option><option value="15">15 minutes</option><option value="60" selected>1 hour</option><option value="1440">1 day</option></select></div></div>
+<div class="row"><div><label>Recurrence</label><select id="freq"><option value="">None</option><option>DAILY</option><option>WEEKLY</option><option>MONTHLY</option></select></div><div><label>Repeat count</label><input id="count" type="number" value="1"></div></div>
+<button class="btn-run" id="run">Preview events</button> <button class="btn-ghost" id="dl">Download .ics</button>
+<pre id="out">Preview and warnings will appear here.</pre>
+<p class="privacy">Runs 100% in your browser. Your files never leave this device.</p></div>
+<section class="features"><h2>How it works</h2><ul><li>CSV and XLSX upload with column mapping for title, start, end, location and notes.</li><li>Timezone selection with ambiguous-date warnings and a preview before download.</li><li>Recurrence builder with count or until, validated against calendar rules.</li><li>Reminder offsets via VALARM and strict ICS escaping and line folding.</li></ul></section>
+<script src="https://cdn.sheetjs.com/xlsx-0.20.3/package/dist/xlsx.full.min.js"></script>
+<script src="src/logic.js"></script>
+<script>
+var L=window.CsvToIcsShiftmaker;var lastEvents=[];
+function toEvents(rows){var objs=L.rowsToObjects(rows);return objs.map(function(o){var keys={};Object.keys(o).forEach(function(k){keys[k.toLowerCase()]=o[k];});
+var ev={title:keys.title||keys.summary||"",start:keys.start||"",end:keys.end||"",location:keys.location||"",notes:keys.notes||keys.description||""};
+var f=document.getElementById("freq").value;if(f)ev.rrule={freq:f,count:Number(document.getElementById("count").value)||1};
+var r=document.getElementById("rem").value;if(r!=="")ev.reminderMinutes=Number(r);return ev;});}
+function warn(rows){var w=[];L.rowsToObjects(rows).forEach(function(o,i){Object.keys(o).forEach(function(k){if(/start/i.test(k)){var d=L.detectAmbiguousDate(o[k]);if(d.ambiguous)w.push("Row "+(i+2)+": "+d.reason);}});});return w;}
+document.getElementById("file").onchange=function(e){var f=e.target.files[0];if(!f)return;
+if(/\.xlsx?$/i.test(f.name)&&typeof XLSX!=="undefined"){f.arrayBuffer().then(function(b){var wb=XLSX.read(b);var ws=wb.Sheets[wb.SheetNames[0]];document.getElementById("csv").value=XLSX.utils.sheet_to_csv(ws);});}
+else f.text().then(function(t){document.getElementById("csv").value=t;});};
+document.getElementById("run").onclick=function(){var rows=L.parseCSV(document.getElementById("csv").value);lastEvents=toEvents(rows);var w=warn(rows);
+document.getElementById("out").textContent=(w.length?"Warnings:\n"+w.join("\n")+"\n\n":"No date warnings.\n\n")+lastEvents.map(function(e){return e.title+" | "+e.start+" to "+e.end;}).join("\n");};
+document.getElementById("dl").onclick=function(){if(!lastEvents.length)document.getElementById("run").click();var tz=document.getElementById("tz").value;var ics=L.buildICS(lastEvents,{tzid:tz==="UTC"?null:tz});var b=new Blob([ics],{type:"text/calendar"});var a=document.createElement("a");a.href=URL.createObjectURL(b);a.download="events.ics";a.click();};
+</script></main><footer>Built by Amir Hussain, operations manager and founder of <a href="https://aamirtechs.com" target="_blank" rel="noopener">AamirTechs: operations, customer support and e-commerce services</a>.<br><a href="https://github.com/aamirtechs" target="_blank" rel="noopener">More open source tools on GitHub</a></footer></body></html>

@@ -1,0 +1,1 @@
+{"name":"csv-to-ics-shiftmaker","version":"1.0.0","private":true,"type":"commonjs","scripts":{"test":"node --test tests/logic.test.js"}}
